@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://dvuurx86d8xhg"]
+
+[ext_resource type="PackedScene" uid="uid://cfbmybqcldud" path="res://levels/GM_Level1.res" id="1_3a04p"]
+[ext_resource type="Script" path="res://levels/GameManager.gd" id="1_njl01"]
+[ext_resource type="PackedScene" uid="uid://dybohrrwpnhew" path="res://prefabs/towers/cannon/CannonTower.tscn" id="2_brx0w"]
+[ext_resource type="PackedScene" uid="uid://corthu6yb4oiv" path="res://prefabs/enemies/enemy_base.tscn" id="3_67xfn"]
+[ext_resource type="PackedScene" uid="uid://b65dydigjin8o" path="res://prefabs/player_camera.tscn" id="4_6yr6h"]
+
+[sub_resource type="Curve3D" id="Curve3D_o7eml"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.043602, 0, -0.259962, 0, 0, 0, 0, 0, 0, 6.9564, 0, -0.259962, 0, 0, 0, 0, 0, 0, 6.9564, 0, -8.25996, 0, 0, 0, 0, 0, 0, 14.9564, 0, -8.25996, 0, 0, 0, 0, 0, 0, 14.9564, 0, -14.26, 0, 0, 0, 0, 0, 0, 24.9564, 0, -14.26, 0, 0, 0, 0, 0, 0, 24.9564, 0, 1.74004, 0, 0, 0, 0, 0, 0, 18.9564, 0, 1.74004, 0, 0, 0, 0, 0, 0, 18.9564, 0, 7.74004),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 9
+
+[node name="Node3d" type="Node3D"]
+script = ExtResource("1_njl01")
+enemy = ExtResource("3_67xfn")
+
+[node name="Map" parent="." instance=ExtResource("1_3a04p")]
+transform = Transform3D(1.00698, 0, 0, 0, 1.00698, 0, 0, 0, 1.00698, 0, 0, 0)
+
+[node name="EnemyStart" type="Node3D" parent="."]
+
+[node name="CannonTower" parent="." instance=ExtResource("2_brx0w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.477473, 2.03432, 5.62692)
+
+[node name="Path3d" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.9564, 0, 8.25996)
+curve = SubResource("Curve3D_o7eml")
+
+[node name="PlayerCamera" parent="." node_paths=PackedStringArray("Map") instance=ExtResource("4_6yr6h")]
+Map = NodePath("../Map")
+
+[node name="Lights and Volumes" type="Node3D" parent="."]
+
+[node name="DirectionalLight3d" type="DirectionalLight3D" parent="Lights and Volumes"]
+transform = Transform3D(5.4634e-15, 0.782065, 0.623197, 4.37114e-08, -0.623197, 0.782065, 1, 2.72408e-08, -3.41851e-08, 0, 13.1104, 0)
+
+[node name="EnemyTimer" type="Timer" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureButton" type="TextureButton" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GUI" type="CanvasGroup" parent="."]
+
+[node name="GoldLabel" type="Label" parent="GUI"]
+offset_right = 54.0
+offset_bottom = 26.0
+text = "Gold: 0"
+horizontal_alignment = 2

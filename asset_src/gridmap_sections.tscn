@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://ra8oj6wp7254"]
+
+[ext_resource type="PackedScene" uid="uid://276nyr0sh0yb" path="res://asset_src/gridmap_sections.glb" id="1_t06tu"]
+[ext_resource type="Material" uid="uid://d1boukqa2xaxu" path="res://materials/ground.material" id="2_0826b"]
+[ext_resource type="Material" uid="uid://gg2send0w1ek" path="res://materials/wall.material" id="3_dn8fn"]
+
+[node name="gridmap_sections" instance=ExtResource("1_t06tu")]
+
+[node name="Floor_1" parent="." index="0"]
+material_override = ExtResource("2_0826b")
+
+[node name="Wall" parent="." index="1"]
+material_override = ExtResource("3_dn8fn")

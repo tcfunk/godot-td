@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://hmg6iq7h0umn"
+path="res://.godot/imported/cannon_tower_head.obj-5cb5f4d8b78cee44b86f69664aa83a40.mesh"
+
+[deps]
+
+files=["res://.godot/imported/cannon_tower_head.obj-5cb5f4d8b78cee44b86f69664aa83a40.mesh"]
+
+source_file="res://asset_src/cannon_tower_head.obj"
+dest_files=["res://.godot/imported/cannon_tower_head.obj-5cb5f4d8b78cee44b86f69664aa83a40.mesh", "res://.godot/imported/cannon_tower_head.obj-5cb5f4d8b78cee44b86f69664aa83a40.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

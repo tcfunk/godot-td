@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://ccc41uk3ganr2"]
+
+[ext_resource type="PackedScene" uid="uid://2g37qll12ly3" path="res://asset_src/gridmap_sections.glb" id="1_klqu5"]
+
+[node name="meshlib_scene" type="Node3D"]
+
+[node name="gridmap_sections" parent="." instance=ExtResource("1_klqu5")]

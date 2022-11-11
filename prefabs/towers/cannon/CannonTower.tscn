@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://dybohrrwpnhew"]
+
+[ext_resource type="Script" path="res://prefabs/towers/Tower.gd" id="1_nbhxh"]
+[ext_resource type="ArrayMesh" uid="uid://68uw1vo011ag" path="res://asset_src/cannon_tower_base.obj" id="2_nwi6j"]
+[ext_resource type="PackedScene" uid="uid://cuwxnbqou511j" path="res://prefabs/projectiles/Projectile.tscn" id="2_xqjfw"]
+[ext_resource type="ArrayMesh" uid="uid://hmg6iq7h0umn" path="res://asset_src/cannon_tower_head.obj" id="3_h18to"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_257dd"]
+radius = 10.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_mqlgj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_02d6k"]
+albedo_color = Color(1, 0, 1, 1)
+
+[node name="CannonTower" type="Node3D"]
+script = ExtResource("1_nbhxh")
+Bullet = ExtResource("2_xqjfw")
+
+[node name="Sight" type="Area3D" parent="."]
+
+[node name="CollisionShape3d" type="CollisionShape3D" parent="Sight"]
+shape = SubResource("SphereShape3D_257dd")
+
+[node name="TowerBase" type="MeshInstance3D" parent="."]
+mesh = ExtResource("2_nwi6j")
+
+[node name="TowerHeadJoint" type="Node3D" parent="TowerBase"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.188, 0)
+
+[node name="Gun" type="MeshInstance3D" parent="TowerBase/TowerHeadJoint"]
+mesh = ExtResource("3_h18to")
+skeleton = NodePath("../..")
+
+[node name="BulletSpawnPoint" type="Node3D" parent="TowerBase/TowerHeadJoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0929518, -2.21425)
+
+[node name="DebugSphere" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.486385, 0, 0, 0, 0.486385, 0, 0, 0, 0.486385, 0, 0, 0)
+mesh = SubResource("SphereMesh_mqlgj")
+surface_material_override/0 = SubResource("StandardMaterial3D_02d6k")
+
+[node name="ShootTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="area_entered" from="Sight" to="." method="_on_sight_area_entered"]
+[connection signal="area_exited" from="Sight" to="." method="_on_sight_area_exited"]
