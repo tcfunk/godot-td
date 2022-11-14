@@ -1,19 +1,40 @@
-[gd_scene load_steps=4 format=3 uid="uid://cuwxnbqou511j"]
+[gd_scene load_steps=7 format=3 uid="uid://cuwxnbqou511j"]
 
+[ext_resource type="Script" path="res://prefabs/projectiles/PF_Projectile.gd" id="1_6hmsg"]
 [ext_resource type="Script" path="res://prefabs/projectiles/Projectile.gd" id="1_phfdx"]
+[ext_resource type="Script" path="res://prefabs/projectiles/ProjectilePath.gd" id="1_uht2x"]
 [ext_resource type="ArrayMesh" uid="uid://cj1hbeap1fqlv" path="res://asset_src/cannon_bullet.obj" id="2_b24xx"]
+
+[sub_resource type="Curve3D" id="Curve3D_lf0tf"]
+_data = {
+"points": PackedVector3Array(0, -1.03702, 4.43085, 0, 1.03702, -4.43085, 0, 0, 0, 0, 2.19784, 1.16431, 0, -2.19784, -1.16431, 0, -1.98407, -10.0318),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_w2kh6"]
 radius = 0.354501
 height = 1.18658
 
-[node name="Projectile" type="Area3D" groups=["Projectile"]]
+[node name="ProjectilePath" type="Path3D"]
+transform = Transform3D(1, 0, 0, 0, 1, -8.9407e-08, 0, 8.9407e-08, 1, 0, -0.0159264, 0.0318522)
+curve = SubResource("Curve3D_lf0tf")
+script = ExtResource("1_uht2x")
+
+[node name="PathFollow3d" type="PathFollow3D" parent="."]
+transform = Transform3D(-1, 0, 0, 0, 0.975, 0.222204, 0, 0.222204, -0.975, 0, 0, 0)
+rotation_mode = 4
+loop = false
+script = ExtResource("1_6hmsg")
+PathSpeed = 20.0
+
+[node name="Projectile" type="Area3D" parent="PathFollow3d" groups=["Projectile"]]
 script = ExtResource("1_phfdx")
 
-[node name="MeshInstance3d" type="MeshInstance3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 9.14774e-09, 0, -0.249114)
+[node name="MeshInstance3d" type="MeshInstance3D" parent="PathFollow3d/Projectile"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.14774e-09, 0, -0.249114)
 mesh = ExtResource("2_b24xx")
 
-[node name="CollisionShape3d" type="CollisionShape3D" parent="."]
-transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, -9.14774e-09, 0, -0.45839)
+[node name="CollisionShape3d" type="CollisionShape3D" parent="PathFollow3d/Projectile"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_w2kh6")

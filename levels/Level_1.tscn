@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://dvuurx86d8xhg"]
+[gd_scene load_steps=8 format=3 uid="uid://dvuurx86d8xhg"]
 
 [ext_resource type="PackedScene" uid="uid://cfbmybqcldud" path="res://levels/GM_Level1.res" id="1_3a04p"]
 [ext_resource type="Script" path="res://levels/GameManager.gd" id="1_njl01"]
 [ext_resource type="PackedScene" uid="uid://dybohrrwpnhew" path="res://prefabs/towers/cannon/CannonTower.tscn" id="2_brx0w"]
 [ext_resource type="PackedScene" uid="uid://corthu6yb4oiv" path="res://prefabs/enemies/enemy_base.tscn" id="3_67xfn"]
 [ext_resource type="PackedScene" uid="uid://b65dydigjin8o" path="res://prefabs/player_camera.tscn" id="4_6yr6h"]
+[ext_resource type="Environment" uid="uid://cedi2exrknkip" path="res://settings/world_env.tres" id="5_huv1n"]
 
 [sub_resource type="Curve3D" id="Curve3D_o7eml"]
 _data = {
@@ -22,9 +23,6 @@ transform = Transform3D(1.00698, 0, 0, 0, 1.00698, 0, 0, 0, 1.00698, 0, 0, 0)
 
 [node name="EnemyStart" type="Node3D" parent="."]
 
-[node name="CannonTower" parent="." instance=ExtResource("2_brx0w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.477473, 2.03432, 5.62692)
-
 [node name="Path3d" type="Path3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.9564, 0, 8.25996)
 curve = SubResource("Curve3D_o7eml")
@@ -36,6 +34,10 @@ Map = NodePath("../Map")
 
 [node name="DirectionalLight3d" type="DirectionalLight3D" parent="Lights and Volumes"]
 transform = Transform3D(5.4634e-15, 0.782065, 0.623197, 4.37114e-08, -0.623197, 0.782065, 1, 2.72408e-08, -3.41851e-08, 0, 13.1104, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Lights and Volumes"]
+environment = ExtResource("5_huv1n")
 
 [node name="EnemyTimer" type="Timer" parent="."]
 
@@ -52,3 +54,6 @@ offset_right = 54.0
 offset_bottom = 26.0
 text = "Gold: 0"
 horizontal_alignment = 2
+
+[node name="CannonTower" parent="." instance=ExtResource("2_brx0w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.93336, -1.15147, 4.32322)

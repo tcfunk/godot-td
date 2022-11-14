@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dybohrrwpnhew"]
+[gd_scene load_steps=9 format=3 uid="uid://dybohrrwpnhew"]
 
 [ext_resource type="Script" path="res://prefabs/towers/Tower.gd" id="1_nbhxh"]
 [ext_resource type="ArrayMesh" uid="uid://68uw1vo011ag" path="res://asset_src/cannon_tower_base.obj" id="2_nwi6j"]
@@ -7,6 +7,13 @@
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_257dd"]
 radius = 10.0
+
+[sub_resource type="Curve3D" id="Curve3D_0rgpr"]
+_data = {
+"points": PackedVector3Array(0, -0.00700951, 3.3733, 0, 0.00700951, -3.3733, 0, 0, 0, 0, 2.67087, -0.883436, 0, -2.67087, 0.883436, 0, -5.72154, -6.33597),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
 
 [sub_resource type="SphereMesh" id="SphereMesh_mqlgj"]
 
@@ -29,14 +36,20 @@ mesh = ExtResource("2_nwi6j")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.188, 0)
 
 [node name="Gun" type="MeshInstance3D" parent="TowerBase/TowerHeadJoint"]
+transform = Transform3D(1, 0, 0, 0, 0.93358, -0.358368, 0, 0.358368, 0.93358, 0, 0, 0)
 mesh = ExtResource("3_h18to")
 skeleton = NodePath("../..")
 
-[node name="BulletSpawnPoint" type="Node3D" parent="TowerBase/TowerHeadJoint"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0929518, -2.21425)
+[node name="BulletSpawnPoint" type="Node3D" parent="TowerBase/TowerHeadJoint/Gun"]
+transform = Transform3D(1, 0, 0, 0, 1, -1.19209e-07, 0, 1.19209e-07, 1, 0, 0.0868096, -2.19831)
+
+[node name="Path3d" type="Path3D" parent="TowerBase/TowerHeadJoint/Gun/BulletSpawnPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, -8.9407e-08, 0, 8.9407e-08, 1, 0, 0, 0)
+curve = SubResource("Curve3D_0rgpr")
 
 [node name="DebugSphere" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.486385, 0, 0, 0, 0.486385, 0, 0, 0, 0.486385, 0, 0, 0)
+visible = false
 mesh = SubResource("SphereMesh_mqlgj")
 surface_material_override/0 = SubResource("StandardMaterial3D_02d6k")
 
