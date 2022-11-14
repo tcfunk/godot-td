@@ -1,0 +1,79 @@
+[gd_scene load_steps=4 format=3 uid="uid://ufk4abxu5nlw"]
+
+[ext_resource type="Script" path="res://levels/MainMenu.gd" id="1_60g1s"]
+[ext_resource type="Texture2D" uid="uid://dp2psv6g3vf83" path="res://icon.svg" id="1_p0exh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v0la0"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_60g1s")
+
+[node name="CanvasGroup" type="CanvasGroup" parent="."]
+
+[node name="Panel" type="Panel" parent="CanvasGroup"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1600.0
+offset_bottom = 900.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_v0la0")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasGroup/Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -175.0
+offset_top = -218.0
+offset_right = 175.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="PlayButton" type="Button" parent="CanvasGroup/Panel/VBoxContainer"]
+custom_minimum_size = Vector2i(350, 0)
+layout_mode = 2
+offset_right = 350.0
+offset_bottom = 107.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 72
+text = "Play"
+
+[node name="ExitButton" type="Button" parent="CanvasGroup/Panel/VBoxContainer"]
+custom_minimum_size = Vector2i(350, 0)
+layout_mode = 2
+offset_top = 111.0
+offset_right = 350.0
+offset_bottom = 218.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 72
+text = "Exit"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasGroup/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Logo" type="Sprite2D" parent="CanvasGroup/Panel/VBoxContainer2"]
+texture = ExtResource("1_p0exh")
+
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="CanvasGroup/Panel"]
+position = Vector2i(800, 450)
