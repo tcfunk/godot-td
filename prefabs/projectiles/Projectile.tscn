@@ -22,7 +22,7 @@ curve = SubResource("Curve3D_lf0tf")
 script = ExtResource("1_uht2x")
 
 [node name="PathFollow3d" type="PathFollow3D" parent="."]
-transform = Transform3D(-1, 0, 0, 0, 0.975, 0.222204, 0, 0.222204, -0.975, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.973687, -0.227887, 0, 0.227887, 0.973687, 0, 0, 0)
 rotation_mode = 4
 loop = false
 script = ExtResource("1_6hmsg")
